@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'Dashboard.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <div class="col-lg-6">
+          <div class="card" style="width: 1000px; ">
+            <div class="card-body" style="width: 1000px;">
+              <h5 class="card-title">Basic Table</h5>
+			  <div class="table-responsive">
+               <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Image</th>
+                      <th scope="col"> Name</th>
+                      <th scope="col"> Prize </th>
+                      <th scope="col"> Catagory </th>
+                      <th scope="col">Discriptions</th>
+                      <th>Upade</th>
+<!--                      <th scope="col">Handle</th>-->
+                    </tr>
+                  </thead>
+                  <tbody>-->
+                    {% for i in product %}
+                    <tr>
+                        <td>
+                          <img src="{{ i.Pro_Image.url }}" width="100px" >
+                        </td>
+                        <td>{{ i.Pro_Name }}</td>
+                        <td>{{ i.Pro_Prize }}</td>
+                        <td>{{ i.Pro_Category }}</td>
+                        <td>{{ i.Pro_Description }}</td>
+                        <td>
+                          <a href="{% url 'edit_product' pro_id=i.id %}" class="btn btn-primary">Edit</a>
+                          <a href="{% url 'delete_product' p_id=i.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}>
+                  </tbody>
+                </table>
+            </div>
+            </div>
+          </div>
+        </div>
+</body>
+</html>
+{% endblock %}
