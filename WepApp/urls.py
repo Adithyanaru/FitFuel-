@@ -5,4 +5,5 @@ urlpatterns=[
     path('home/',views.home,name='home'),
     path('shop/',views.shop,name='shop'),
     path('filtered_product/<cat_name>/',views.filtered_product,name='filtered_product'),
+    path('single_page/<product_id>/',views.single_page,name='single_page')
 ]

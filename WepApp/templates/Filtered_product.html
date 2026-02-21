@@ -483,15 +483,17 @@
                                     <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
                                         <div class="product-item-inner border rounded">
                                             <div class="product-item-inner-item">
-                                                <img src="{{ i.Pro_Image.url }}" class="img-fluid w-100 rounded-top" alt="">
+                                                <a href="{% url 'single_page' product_id=i.id %}">
+                                                    <img src="{{ i.Pro_Image.url }}" class="img-fluid w-100 rounded-top" alt=""> 
+                                                </a>
                                                 <div class="product-new">New</div>
                                                 <div class="product-details">
                                                     <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                                 </div>
                                             </div>
                                             <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">{{ i.Pro_Name }}</a>
+                                                
+                                                <a href="{% url 'single_page' product_id=i.id %}" class="d-block h4">{{ i.Pro_Name }}</a>
                                                 <span class="text-primary fs-5">Rs.{{ i.Pro_Prize}}</span>
                                             </div>
                                         </div>

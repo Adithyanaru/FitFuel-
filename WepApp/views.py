@@ -23,6 +23,9 @@ def filtered_product(request,cat_name):
                                                     'cat_name':cat_name})
 
 
-# def single_item(request,product_id):
-#     single_item=ProductDn.objects.filter(id=product_id)
-#     ret
+def single_page(request,product_id):
+    single_product=ProductDb.objects.get(id=product_id)
+    category=Category.objects.all()
+    return render(request,'Single_page.html',{'single_product':single_product,
+                                            'category':category,
+                                            'product_id':product_id})
