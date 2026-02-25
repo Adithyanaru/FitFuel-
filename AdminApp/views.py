@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from AdminApp.models import *
+from WepApp.models import *
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
@@ -106,3 +107,6 @@ def update_product(request,pro_id):
             ProductDb.objects.filter(id=pro_id).update(Pro_Name=pro_name,Pro_Category=pro_cat,
             Pro_Prize=pro_prize,Pro_Description=pro_desc,Pro_Image=file)
         return redirect(view_product)
+def contct_details(request):
+    con_details=ContactDb.objects.all()
+    return render(request,'Contact_Details.html',{'con_details':con_details})        

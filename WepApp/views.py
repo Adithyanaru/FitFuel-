@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from AdminApp.models import *
+from WepApp.models import *
 
 # Create your views here.
 def home(request):
@@ -29,3 +30,14 @@ def single_page(request,product_id):
     return render(request,'Single_page.html',{'single_product':single_product,
                                             'category':category,
                                             'product_id':product_id})
+def contact(request):
+    return render(request,'Contact.html')
+
+def save_contact(request):
+    if request.method == 'POST':
+        con_name=request.POST.get('name')
+        con_email=request.POST.get('email')
+        con_messange=request.POST.get('message')
+        obj=ContactDb(Name=con_name,Email=con_email,Message=con_messange)
+        obj.save()
+        return redirect('contact')
