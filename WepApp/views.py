@@ -80,7 +80,24 @@ def user_logout(request):
 
 def shoping_cart(request):
     cart=CartDb.objects.filter(Username=request.session.get('Username'))
-    return render(request,'Shoping_cart.html',{'cart':cart})
+    sub_total=0
+    delivery=0
+    grand_total=0
+    user_data=CartDb.objects.filter(Username=request.session.get('Username'))
+    for i in user_data:
+        sub_total+=i.Total_Price
+        if sub_total>1000:
+            delivery=0
+        elif sub_total>500:
+            delivery=50
+        else:
+            delivery=100
+        grand_total=sub_total+delivery
+         
+    return render(request,'Shoping_cart.html',{'cart':cart,
+                                            'sub_total':sub_total,
+                                            'delivery':delivery,
+                                            'grand_total':grand_total})
 def save_cart(request):
     if request.method == 'POST':
         uname=request.POST.get('username')
@@ -93,3 +110,5 @@ def save_cart(request):
         obj=CartDb(Username=uname,ProductName=proname,Quantity=quantity,Price=price,Total_Price=tprice,Product_Image=img)
         obj.save()
         return redirect(home)
+
+    
