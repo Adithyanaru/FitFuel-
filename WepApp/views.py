@@ -110,5 +110,7 @@ def save_cart(request):
         obj=CartDb(Username=uname,ProductName=proname,Quantity=quantity,Price=price,Total_Price=tprice,Product_Image=img)
         obj.save()
         return redirect(home)
+def payment(requet):
+    return render(requet,'Payment.html')
 
     
